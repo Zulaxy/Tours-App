@@ -31,23 +31,31 @@ function App(props) {
     fetchTours();
   }, []);
 
-  if (tours.length === 0) {
-    return (
-      <main>
+  // if (tours.length === 0) {
+  //   return (
+  //     <main>
+  //       <div className="title">
+  //         <h2>No Tours Left</h2>
+  //         <button onClick={fetchTours} className="btn">
+  //           Get Tours
+  //         </button>
+  //       </div>
+  //     </main>
+  //   );
+  // } 
+
+  return (
+    <main>
+      {!loading && <Tours tours={tours} removeTour={removeTourHandler} />}
+      {loading && <Loading />}
+      {tours.length === 0 && !loading && <main>
         <div className="title">
           <h2>No Tours Left</h2>
           <button onClick={fetchTours} className="btn">
             Get Tours
           </button>
         </div>
-      </main>
-    );
-  }
-
-  return (
-    <main>
-      {!loading && <Tours tours={tours} removeTour={removeTourHandler} />}
-      {loading && <Loading />}
+      </main>}
     </main>
   );
 }
